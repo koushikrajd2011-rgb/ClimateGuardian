@@ -23,7 +23,7 @@ game.js             ← Game engine
 - Click towers to sell/upgrade
 - Waves per level = zone number (Zone 1 = 1 wave, Zone 8 = 8)
 
-Towers use **emoji** — no tower PNGs needed.
+Towers use **emoji** 
 
 ## Controls
 
