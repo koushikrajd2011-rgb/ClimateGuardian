@@ -1,49 +1,54 @@
 /* ═══════════════════════════════════════════════════════════════════
    EcoDefenders — Game Configuration
+   All files flat — no subfolder. Enemies use PNGs, towers use emoji.
    ═══════════════════════════════════════════════════════════════════ */
 const CONFIG = {
     CANVAS_WIDTH: 1280,
     CANVAS_HEIGHT: 720,
     PATH_DRAW_WIDTH: 48,
     COLOR_TOLERANCE: 55,
-    SPRITE_FOLDER: 'climateguardian/',
-    BACKGROUND_IMG: 'climateguardian/background.png',
-    BACKGROUND2_IMG: 'climateguardian/background2.png',
+
+    // Shift path waypoints right so factory/city aren't hidden
+    PATH_OFFSET_X: 60,
 
     // Road-style path settings
-    PATH_COLOR: '#8B8B8B',           // grey road surface
-    PATH_COLOR_RGB: [139, 139, 139], // for pixel detection
-    ROAD_EDGE_COLOR: '#6B6B6B',      // dark grey edge
-    ROAD_DASH_COLOR: '#FFFFFF',      // white dashed lane markings
-    ROAD_DASH_SPEED: 60,             // pixels/sec dash animation speed
-    ROAD_DASH_LEN: 20,              // dash length
-    ROAD_DASH_GAP: 30,              // gap between dashes
+    PATH_COLOR: '#8B8B8B',
+    PATH_COLOR_RGB: [139, 139, 139],
+    ROAD_EDGE_COLOR: '#6B6B6B',
+    ROAD_DASH_COLOR: '#FFFFFF',
+    ROAD_DASH_SPEED: 60,
+    ROAD_DASH_LEN: 20,
+    ROAD_DASH_GAP: 30,
 
-    // Sprite PNGs — exact filenames from climateguardian folder
+    // Sprite PNGs — flat structure, no folder
     SPRITES: {
-        factory: 'climateguardian/factory.png',
-        city: 'climateguardian/city.png',
-        explosion: 'climateguardian/explosion.png',
-        gameHeart: 'climateguardian/gameHeart.png',
-        slowring: 'climateguardian/slowring.png',
-        tech: 'climateguardian/tech.png',
-        wave: 'climateguardian/wave.png',
-        triplet: 'climateguardian/triple-t-removebg-preview.png',
+        factory: 'factory.png',
+        city: 'city.png',
+        explosion: 'explosion.png',
+        gameHeart: 'gameHeart.png',
+        slowring: 'slowring.png',
+        tech: 'tech.png',
+        wave: 'wave.png',
+        triplet: 'triple-t-removebg-preview.png',
         // Enemy sprites
-        enemy_micro: 'climateguardian/enemy_micro.png',
-        enemy_co2: 'climateguardian/enemy_co2.png',
-        enemy_plastic: 'climateguardian/enemy_plastic.png',
-        enemy_wildfire: 'climateguardian/enemy_wildfire.png',
-        enemy_smog: 'climateguardian/enemy_smog.png',
-        enemy_deadzone: 'climateguardian/enemy_deadzone.png',
-        enemy_oil: 'climateguardian/enemy_oil.png',
-        enemy_ewaste: 'climateguardian/enemy_ewaste.png',
-        enemy_bulldozer: 'climateguardian/enemy_bulldozer.png',
-        enemy_tanker: 'climateguardian/enemy_tanker.png',
-        enemy_coal: 'climateguardian/enemy_coal.png',
-        enemy_methane: 'climateguardian/enemy_methane.png',
-        enemy_heatdome: 'climateguardian/enemy_heatdome.png',
+        enemy_micro: 'enemy_micro.png',
+        enemy_co2: 'enemy_co2.png',
+        enemy_plastic: 'enemy_plastic.png',
+        enemy_wildfire: 'enemy_wildfire.png',
+        enemy_smog: 'enemy_smog.png',
+        enemy_deadzone: 'enemy_deadzone.png',
+        enemy_oil: 'enemy_oil.png',
+        enemy_ewaste: 'enemy_ewaste.png',
+        enemy_bulldozer: 'enemy_bulldozer.png',
+        enemy_tanker: 'enemy_tanker.png',
+        enemy_coal: 'enemy_coal.png',
+        enemy_methane: 'enemy_methane.png',
+        enemy_heatdome: 'enemy_heatdome.png',
     },
+
+    BACKGROUND_IMG: 'background.png',
+    BACKGROUND2_IMG: 'background2.png',
+
     START_MONEY: 175,
     START_LIVES: 22,
     SPAWN_INTERVAL: 0.7,
@@ -51,7 +56,7 @@ const CONFIG = {
     TOWER_MIN_DISTANCE: 58,
     TOWER_RADIUS: 36,
     BUILD_PHASE_TIME: 5,
-    SPRITE_OFFSET_X: 18,  // Shift factory, city, path, and sprites RIGHT
+    SPRITE_OFFSET_X: 0,  // No extra offset — path offset handles it
 
     TOWERS: {
         solar:    {id:'solar',   name:'Solar Panel',    emoji:'☀️',  cost:70,  dmg:16, range:132, fireRate:0.48, color:'#ffcc33', effect:'none',  slowFactor:0, slowDuration:0, income:0, description:'Clean energy beam', ability:'1.5× vs CO₂/Wildfire', trait:'warn', unlock:1,  fact:'Solar energy could meet global demand 10,000× over.', ecoTip:'Switch to solar — it cuts your home CO₂ by 80%. Start small: try a solar phone charger!', ecoAction:'Switch to solar energy', ecoSavings:800},
@@ -67,19 +72,19 @@ const CONFIG = {
     },
 
     ENEMIES: {
-        micro:     {name:'Microplastic',  emoji:'🦠', hp:12,  speed:60,  reward:2,  co2:1,  lives:1, scale:1.0,  flying:false, fact:'Found in blood & clouds', weakness:'Ocean/Recycle 2×'},
-        co2:       {name:'CO₂ Cloud',     emoji:'💨', hp:35,  speed:35,  reward:4,  co2:2,  lives:1, scale:1.3,  flying:false, fact:'300+ years in air', weakness:'Solar 1.5×'},
-        plastic:   {name:'Plastic Swarm', emoji:'🧴', hp:22,  speed:50,  reward:3,  co2:1,  lives:1, scale:1.15, flying:false, fact:'Only 9% ever recycled', weakness:'Ocean/Recycle'},
-        wildfire:  {name:'Wildfire',      emoji:'🔥', hp:44,  speed:42,  reward:5,  co2:5,  lives:2, scale:1.25, flying:false, fact:'Releases stored forest carbon', weakness:'Solar/Geo'},
-        smog:      {name:'Factory Smog',  emoji:'🏭', hp:58,  speed:32,  reward:6,  co2:3,  lives:1, scale:1.3,  flying:true,  fact:'7M deaths per year', weakness:'Wind 1.8×'},
-        deadzone:  {name:'Dead Zone',     emoji:'💀', hp:80,  speed:33,  reward:7,  co2:3,  lives:2, scale:1.3,  flying:true,  fact:'Ocean dead zones growing', weakness:'Ocean/Wind'},
-        oil:       {name:'Oil Slick',     emoji:'🛢️', hp:110, speed:24,  reward:10, co2:4,  lives:2, scale:1.45, flying:false, fact:'Kills plankton', weakness:'Hydro/Ocean'},
-        ewaste:    {name:'E-Waste',       emoji:'🔋', hp:150, speed:26,  reward:13, co2:3,  lives:2, scale:1.4,  flying:false, fact:'Toxic metals leach', weakness:'Carbon/Recycle'},
-        bulldozer: {name:'Dozer Corp',    emoji:'🚜', hp:200, speed:20,  reward:18, co2:6,  lives:3, scale:1.6,  flying:false, fact:'10% of all emissions', weakness:'Carbon'},
-        tanker:    {name:'Oil Tanker',    emoji:'🚛', hp:240, speed:28,  reward:22, co2:5,  lives:2, scale:1.55, flying:false, fact:'Splits into 2 Oil Slicks', weakness:'Hydro/Carbon'},
-        coal:      {name:'Coal Train',    emoji:'🚂', hp:360, speed:16,  reward:28, co2:8,  lives:3, scale:1.7,  flying:false, fact:'Dirtiest fossil fuel', weakness:'Carbon/Geo'},
-        methane:   {name:'Methane Titan', emoji:'🐄‍💨', hp:780, speed:18,  reward:55, co2:15, lives:4, scale:2.2,  flying:false, fact:'80× more potent than CO₂', weakness:'Geo 1.7×'},
-        heatdome:  {name:'Heat Dome',     emoji:'🌡️', hp:1200,speed:15,  reward:85, co2:20, lives:5, scale:2.5,  flying:false, fact:'Blocks rain, cooks city', weakness:'Fusion focus'}
+        micro:     {name:'Microplastic',  hp:12,  speed:60,  reward:2,  co2:1,  lives:1, scale:1.0,  flying:false, fact:'Found in blood & clouds', weakness:'Ocean/Recycle 2×'},
+        co2:       {name:'CO₂ Cloud',     hp:35,  speed:35,  reward:4,  co2:2,  lives:1, scale:1.3,  flying:false, fact:'300+ years in air', weakness:'Solar 1.5×'},
+        plastic:   {name:'Plastic Swarm', hp:22,  speed:50,  reward:3,  co2:1,  lives:1, scale:1.15, flying:false, fact:'Only 9% ever recycled', weakness:'Ocean/Recycle'},
+        wildfire:  {name:'Wildfire',      hp:44,  speed:42,  reward:5,  co2:5,  lives:2, scale:1.25, flying:false, fact:'Releases stored forest carbon', weakness:'Solar/Geo'},
+        smog:      {name:'Factory Smog',  hp:58,  speed:32,  reward:6,  co2:3,  lives:1, scale:1.3,  flying:true,  fact:'7M deaths per year', weakness:'Wind 1.8×'},
+        deadzone:  {name:'Dead Zone',     hp:80,  speed:33,  reward:7,  co2:3,  lives:2, scale:1.3,  flying:true,  fact:'Ocean dead zones growing', weakness:'Ocean/Wind'},
+        oil:       {name:'Oil Slick',     hp:110, speed:24,  reward:10, co2:4,  lives:2, scale:1.45, flying:false, fact:'Kills plankton', weakness:'Hydro/Ocean'},
+        ewaste:    {name:'E-Waste',       hp:150, speed:26,  reward:13, co2:3,  lives:2, scale:1.4,  flying:false, fact:'Toxic metals leach', weakness:'Carbon/Recycle'},
+        bulldozer: {name:'Dozer Corp',    hp:200, speed:20,  reward:18, co2:6,  lives:3, scale:1.6,  flying:false, fact:'10% of all emissions', weakness:'Carbon'},
+        tanker:    {name:'Oil Tanker',    hp:240, speed:28,  reward:22, co2:5,  lives:2, scale:1.55, flying:false, fact:'Splits into 2 Oil Slicks', weakness:'Hydro/Carbon'},
+        coal:      {name:'Coal Train',    hp:360, speed:16,  reward:28, co2:8,  lives:3, scale:1.7,  flying:false, fact:'Dirtiest fossil fuel', weakness:'Carbon/Geo'},
+        methane:   {name:'Methane Titan', hp:780, speed:18,  reward:55, co2:15, lives:4, scale:2.2,  flying:false, fact:'80× more potent than CO₂', weakness:'Geo 1.7×'},
+        heatdome:  {name:'Heat Dome',     hp:1200,speed:15,  reward:85, co2:20, lives:5, scale:2.5,  flying:false, fact:'Blocks rain, cooks city', weakness:'Fusion focus'}
     },
 
     ZONES: [
@@ -93,37 +98,28 @@ const CONFIG = {
         {id:8, name:"Future City 2050", icon:"🏙️", range:[19,20], color:"#dcd8ff", desc:"Net-zero metropolis", divider:"city", divIcon:"🌉", divLabel:"City Gate"}
     ],
 
-    // Wave templates — zone.id = number of waves per level in that zone
-    // Zone 1: 1 wave, Zone 2: 2 waves, ... Zone 8: 8 waves
     WAVE_TEMPLATES: [
-        // Zone 1 (1 wave per level)
         [{type:'co2',count:14}],
-        // Zone 2 (2 waves per level)
         [{type:'co2',count:12},{type:'plastic',count:6}],
         [{type:'plastic',count:10},{type:'oil',count:5}],
-        // Zone 3 (3 waves per level)
         [{type:'co2',count:14},{type:'smog',count:5}],
         [{type:'oil',count:8},{type:'smog',count:6}],
         [{type:'co2',count:16},{type:'smog',count:8},{type:'oil',count:4}],
-        // Zone 4 (4 waves per level)
         [{type:'oil',count:10},{type:'deadzone',count:6}],
         [{type:'co2',count:18},{type:'smog',count:10}],
         [{type:'oil',count:8},{type:'deadzone',count:6},{type:'bulldozer',count:4}],
         [{type:'co2',count:20},{type:'methane',count:5},{type:'oil',count:6}],
-        // Zone 5 (5 waves per level)
         [{type:'co2',count:20},{type:'smog',count:12}],
         [{type:'oil',count:10},{type:'deadzone',count:8},{type:'bulldozer',count:4}],
         [{type:'methane',count:6},{type:'oil',count:8}],
         [{type:'co2',count:22},{type:'methane',count:8},{type:'oil',count:6}],
         [{type:'heatdome',count:3},{type:'methane',count:8},{type:'oil',count:8}],
-        // Zone 6 (6 waves per level)
         [{type:'co2',count:22},{type:'smog',count:14}],
         [{type:'methane',count:8},{type:'oil',count:10}],
         [{type:'smog',count:16},{type:'heatdome',count:3}],
         [{type:'co2',count:24},{type:'methane',count:10}],
         [{type:'oil',count:12},{type:'methane',count:8},{type:'heatdome',count:2}],
         [{type:'heatdome',count:4},{type:'methane',count:10},{type:'oil',count:8}],
-        // Zone 7 (7 waves per level)
         [{type:'co2',count:24},{type:'smog',count:16},{type:'methane',count:6}],
         [{type:'heatdome',count:4},{type:'methane',count:10},{type:'oil',count:8}],
         [{type:'co2',count:26},{type:'smog',count:18},{type:'methane',count:8}],
@@ -131,7 +127,6 @@ const CONFIG = {
         [{type:'heatdome',count:5},{type:'methane',count:12},{type:'oil',count:10}],
         [{type:'co2',count:28},{type:'methane',count:14},{type:'oil',count:8}],
         [{type:'heatdome',count:6},{type:'methane',count:14},{type:'oil',count:12}],
-        // Zone 8 (8 waves per level)
         [{type:'co2',count:28},{type:'smog',count:18},{type:'methane',count:8}],
         [{type:'heatdome',count:5},{type:'methane',count:12},{type:'oil',count:10}],
         [{type:'methane',count:16},{type:'heatdome',count:6},{type:'oil',count:12}],

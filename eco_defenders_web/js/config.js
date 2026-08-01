@@ -5,45 +5,10 @@ const CONFIG = {
     CANVAS_WIDTH: 1280,
     CANVAS_HEIGHT: 720,
     PATH_DRAW_WIDTH: 48,
+    PATH_COLOR: '#8B5926',
+    PATH_COLOR_RGB: [139, 89, 38],
     COLOR_TOLERANCE: 55,
-    SPRITE_FOLDER: 'climateguardian/',
-    BACKGROUND_IMG: 'climateguardian/background.png',
-    BACKGROUND2_IMG: 'climateguardian/background2.png',
-
-    // Road-style path settings
-    PATH_COLOR: '#8B8B8B',           // grey road surface
-    PATH_COLOR_RGB: [139, 139, 139], // for pixel detection
-    ROAD_EDGE_COLOR: '#6B6B6B',      // dark grey edge
-    ROAD_DASH_COLOR: '#FFFFFF',      // white dashed lane markings
-    ROAD_DASH_SPEED: 60,             // pixels/sec dash animation speed
-    ROAD_DASH_LEN: 20,              // dash length
-    ROAD_DASH_GAP: 30,              // gap between dashes
-
-    // Sprite PNGs — exact filenames from climateguardian folder
-    SPRITES: {
-        factory: 'climateguardian/factory.png',
-        city: 'climateguardian/city.png',
-        explosion: 'climateguardian/explosion.png',
-        gameHeart: 'climateguardian/gameHeart.png',
-        slowring: 'climateguardian/slowring.png',
-        tech: 'climateguardian/tech.png',
-        wave: 'climateguardian/wave.png',
-        triplet: 'climateguardian/triple-t-removebg-preview.png',
-        // Enemy sprites
-        enemy_micro: 'climateguardian/enemy_micro.png',
-        enemy_co2: 'climateguardian/enemy_co2.png',
-        enemy_plastic: 'climateguardian/enemy_plastic.png',
-        enemy_wildfire: 'climateguardian/enemy_wildfire.png',
-        enemy_smog: 'climateguardian/enemy_smog.png',
-        enemy_deadzone: 'climateguardian/enemy_deadzone.png',
-        enemy_oil: 'climateguardian/enemy_oil.png',
-        enemy_ewaste: 'climateguardian/enemy_ewaste.png',
-        enemy_bulldozer: 'climateguardian/enemy_bulldozer.png',
-        enemy_tanker: 'climateguardian/enemy_tanker.png',
-        enemy_coal: 'climateguardian/enemy_coal.png',
-        enemy_methane: 'climateguardian/enemy_methane.png',
-        enemy_heatdome: 'climateguardian/enemy_heatdome.png',
-    },
+    BACKGROUND_IMG: 'assets/background.png',
     START_MONEY: 175,
     START_LIVES: 22,
     SPAWN_INTERVAL: 0.7,
@@ -51,7 +16,7 @@ const CONFIG = {
     TOWER_MIN_DISTANCE: 58,
     TOWER_RADIUS: 36,
     BUILD_PHASE_TIME: 5,
-    SPRITE_OFFSET_X: 18,  // Shift factory, city, path, and sprites RIGHT
+    SPRITE_OFFSET_X: -6,
 
     TOWERS: {
         solar:    {id:'solar',   name:'Solar Panel',    emoji:'☀️',  cost:70,  dmg:16, range:132, fireRate:0.48, color:'#ffcc33', effect:'none',  slowFactor:0, slowDuration:0, income:0, description:'Clean energy beam', ability:'1.5× vs CO₂/Wildfire', trait:'warn', unlock:1,  fact:'Solar energy could meet global demand 10,000× over.', ecoTip:'Switch to solar — it cuts your home CO₂ by 80%. Start small: try a solar phone charger!', ecoAction:'Switch to solar energy', ecoSavings:800},
