@@ -54,4 +54,4 @@ Towers use **emoji** — no tower PNGs needed.
 
 Name your guardian **"Triple T"** for a special prologue background.
 
-*Built with 💚 for the planet*
+Try it here - https://koushikrajd2011-rgb.github.io/ClimateGuardian/
