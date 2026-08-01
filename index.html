@@ -4,159 +4,163 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Climate Guardians</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef7ee;--panel:#fff;--green:#2a9d6a;--green-dark:#1f7a52;--lime:#c8f0d0;--ink:#132a18}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Nunito',system-ui,sans-serif;background:var(--bg);color:var(--ink);height:100vh;width:100vw;overflow:hidden}
+body{font-family:'Press Start 2P',monospace;background:var(--bg);color:var(--ink);height:100vh;width:100vw;overflow:hidden;font-size:10px}
 .screen{position:fixed;inset:0;z-index:50;display:none;overflow:auto}.screen.active{display:flex}
-.btn{border:0;border-radius:14px;padding:12px 20px;font-family:'Space Grotesk';font-weight:700;font-size:13px;cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);display:inline-flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.btn{border:0;border-radius:12px;padding:10px 16px;font-family:'Press Start 2P';font-weight:700;font-size:10px;cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);display:inline-flex;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden}
 .btn::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.25),transparent 60%);opacity:0;transition:opacity .2s}.btn:hover::after{opacity:1}
-.btn-primary{background:var(--green);color:#fff;box-shadow:0 6px 0 var(--green-dark),0 12px 24px rgba(42,157,106,.3)}.btn-primary:hover{transform:translateY(-3px);box-shadow:0 9px 0 var(--green-dark),0 16px 30px rgba(42,157,106,.4)}.btn-primary:active{transform:translateY(3px);box-shadow:0 2px 0 var(--green-dark)}
-.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid #d0e8c8;box-shadow:0 4px 0 #d0e8c8}.btn-ghost:hover{transform:translateY(-2px);box-shadow:0 6px 0 #d0e8c8,0 10px 20px rgba(0,0,0,.06)}.btn-ghost:active{transform:translateY(2px);box-shadow:0 1px 0 #d0e8c8}
-.btn-sm{padding:7px 11px;font-size:11px;border-radius:10px}
-.tag{display:inline-flex;padding:2px 8px;border-radius:99px;font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.btn-primary{background:var(--green);color:#fff;box-shadow:0 5px 0 var(--green-dark),0 10px 20px rgba(42,157,106,.3)}.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--green-dark),0 14px 26px rgba(42,157,106,.4)}.btn-primary:active{transform:translateY(3px);box-shadow:0 2px 0 var(--green-dark)}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid #d0e8c8;box-shadow:0 3px 0 #d0e8c8}.btn-ghost:hover{transform:translateY(-2px);box-shadow:0 5px 0 #d0e8c8,0 8px 16px rgba(0,0,0,.06)}.btn-ghost:active{transform:translateY(2px);box-shadow:0 1px 0 #d0e8c8}
+.btn-sm{padding:6px 10px;font-size:9px;border-radius:9px}
+.tag{display:inline-flex;padding:2px 7px;border-radius:99px;font-size:8px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
 .tag-warn{background:#fff1b8;color:#7a5a00}.tag-danger{background:#ffd4d4;color:#8a1d1d}.tag-info{background:#e0f2ff;color:#1d5a8a}.tag-success{background:#d6f5d6;color:#1f5a2f}.tag-capture{background:#ece6ff;color:#5a3bc7}.tag-slow{background:#e0f2ff;color:#1d5a8a}.tag-lock{background:#eee;color:#777}
-#homeScreen{background:radial-gradient(1000px 600px at 15% -10%,#c2f0c2 0%,transparent 60%),radial-gradient(900px 600px at 90% 10%,#fff3a1 0%,transparent 60%),radial-gradient(800px 500px at 50% 120%,#a6e2c2 0%,transparent 60%),#eef7ee;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center;overflow:hidden}
+#homeScreen{background:radial-gradient(1000px 600px at 15% -10%,#c2f0c2 0%,transparent 60%),radial-gradient(900px 600px at 90% 10%,#fff3a1 0%,transparent 60%),radial-gradient(800px 500px at 50% 120%,#a6e2c2 0%,transparent 60%),#eef7ee;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center;overflow:hidden}
 #homeParticles{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero-badge{display:inline-flex;gap:8px;background:#fff;border:1.5px solid #cde8c3;border-radius:99px;padding:6px 14px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green-dark);position:relative;z-index:1}
-.hero-title{font-family:'Space Grotesk';font-size:clamp(40px,8vw,84px);line-height:.9;letter-spacing:-.03em;margin:16px 0 10px;font-weight:700;position:relative;z-index:1}
+.hero-badge{display:inline-flex;gap:6px;background:#fff;border:1.5px solid #cde8c3;border-radius:99px;padding:5px 12px;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--green-dark);position:relative;z-index:1}
+.hero-title{font-family:'Press Start 2P';font-size:clamp(32px,7vw,68px);line-height:.9;letter-spacing:-.03em;margin:12px 0 8px;font-weight:700;position:relative;z-index:1}
 .hero-title span{background:linear-gradient(90deg,var(--green),#6ed79d 40%,#ffcc33 70%,#7dd3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-subtitle{max-width:720px;font-size:clamp(13px,2vw,16px);line-height:1.55;opacity:.8;margin:0 auto 16px;position:relative;z-index:1}
-.hero-stats{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;position:relative;z-index:1}
-.hero-stat{background:rgba(255,255,255,.9);border:1.5px solid #d8ecd4;border-radius:14px;padding:9px 14px;display:flex;gap:8px;align-items:center;min-width:140px;box-shadow:0 6px 20px rgba(0,0,0,.05);transition:transform .2s}.hero-stat:hover{transform:translateY(-3px) scale(1.02)}
-.hero-stat b{display:block;font-size:17px}.hero-stat small{font-size:9px;opacity:.6;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-#playerNameInput{padding:11px 16px;border:2px solid #bfe0b8;border-radius:12px;font-family:'Space Grotesk';font-weight:700;font-size:14px;width:260px;text-align:center;background:#fff;box-shadow:0 3px 0 #c8e6c3;outline:none;transition:.15s;position:relative;z-index:1}
+.hero-subtitle{max-width:720px;font-size:clamp(10px,1.5vw,12px);line-height:1.55;opacity:.8;margin:0 auto 12px;position:relative;z-index:1}
+.hero-stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;position:relative;z-index:1}
+.hero-stat{background:rgba(255,255,255,.9);border:1.5px solid #d8ecd4;border-radius:12px;padding:7px 12px;display:flex;gap:6px;align-items:center;min-width:120px;box-shadow:0 5px 16px rgba(0,0,0,.05);transition:transform .2s}.hero-stat:hover{transform:translateY(-3px) scale(1.02)}
+.hero-stat b{display:block;font-size:13px}.hero-stat small{font-size:7px;opacity:.6;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+#playerNameInput{padding:9px 14px;border:2px solid #bfe0b8;border-radius:10px;font-family:'Press Start 2P';font-weight:700;font-size:11px;width:240px;text-align:center;background:#fff;box-shadow:0 3px 0 #c8e6c3;outline:none;transition:.15s;position:relative;z-index:1}
 #playerNameInput:focus{border-color:var(--green);box-shadow:0 3px 0 var(--green),0 0 0 3px #c8ecc8}
-#introScreen,#zonePrologueScreen{background:#0b1210;color:#d6f0d6;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+#introScreen,#zonePrologueScreen{background:#0b1210;color:#d6f0d6;flex-direction:column;align-items:center;justify-content:center;padding:14px}
 #introParticles,#zoneParticles{position:absolute;inset:0;z-index:0;pointer-events:none}
-.intro-box{position:relative;z-index:2;width:95%;max-width:820px;background:rgba(19,42,24,.96);border:2px solid #2a9d6a;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column;max-height:92vh}
-.intro-header{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;background:rgba(42,157,106,.18);border-bottom:1px solid rgba(42,157,106,.3);font-family:'Space Grotesk';font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.9;flex-shrink:0}
-.intro-history{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px;max-height:52vh;scroll-behavior:smooth}
-.bubble{max-width:82%;padding:10px 14px;border-radius:18px;font-size:13px;line-height:1.55;position:relative;animation:bubbleIn .3s ease}
+.intro-box{position:relative;z-index:2;width:95%;max-width:820px;background:rgba(19,42,24,.96);border:2px solid #2a9d6a;border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column;max-height:92vh}
+.intro-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(42,157,106,.18);border-bottom:1px solid rgba(42,157,106,.3);font-family:'Press Start 2P';font-size:8px;letter-spacing:.12em;text-transform:uppercase;opacity:.9;flex-shrink:0}
+.intro-history{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px;max-height:52vh;scroll-behavior:smooth}
+.bubble{max-width:82%;padding:8px 12px;border-radius:16px;font-size:11px;line-height:1.55;position:relative;animation:bubbleIn .3s ease}
 @keyframes bubbleIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.bubble .b-speaker{font-family:'Space Grotesk';font-size:10px;letter-spacing:.08em;opacity:.7;margin-bottom:4px;font-weight:700}
+.bubble .b-speaker{font-family:'Press Start 2P';font-size:8px;letter-spacing:.08em;opacity:.7;margin-bottom:3px;font-weight:700}
 .bubble.planet{align-self:flex-start;background:rgba(125,211,255,.13);border:1.5px solid rgba(125,211,255,.26);border-bottom-left-radius:6px;color:#cfeeff}
 .bubble.player{align-self:flex-end;background:rgba(42,157,106,.22);border:1.5px solid rgba(42,157,106,.4);border-bottom-right-radius:6px;color:#d6fcd6}
 .bubble.child{align-self:flex-start;background:rgba(255,204,51,.12);border:1.5px solid rgba(255,204,51,.26);border-bottom-left-radius:6px;color:#fff4c2}
-.bubble.narrator{align-self:center;background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.18);font-style:italic;opacity:.85;max-width:90%;text-align:center;font-size:12px}
-.bubble.system{align-self:center;background:rgba(255,255,255,.94);color:#132a18;border:1.5px solid #2a9d6a;font-weight:700;max-width:92%;text-align:left;font-family:'Space Grotesk';font-size:11px}
-.intro-current{border-top:1.5px solid rgba(42,157,106,.28);padding:14px;display:flex;gap:12px;align-items:flex-start;background:rgba(0,0,0,.22);flex-shrink:0;min-height:104px}
-.intro-portrait{width:56px;height:56px;border-radius:13px;background:#132a18;border:1.5px solid #2a9d6a;display:grid;place-items:center;font-size:30px;flex:0 0 56px}
-.intro-speaker{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:.08em;color:#7dd3ff;margin-bottom:5px}
-.intro-line{font-size:14px;line-height:1.6;min-height:48px;white-space:pre-wrap}
-.intro-continue{margin-top:8px;font-size:10px;opacity:.55;letter-spacing:.06em;text-align:right;animation:pulse 1.2s infinite}
+.bubble.narrator{align-self:center;background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.18);font-style:italic;opacity:.85;max-width:90%;text-align:center;font-size:10px}
+.bubble.system{align-self:center;background:rgba(255,255,255,.94);color:#132a18;border:1.5px solid #2a9d6a;font-weight:700;max-width:92%;text-align:left;font-family:'Press Start 2P';font-size:9px}
+.intro-current{border-top:1.5px solid rgba(42,157,106,.28);padding:12px;display:flex;gap:10px;align-items:flex-start;background:rgba(0,0,0,.22);flex-shrink:0;min-height:96px}
+.intro-portrait{width:50px;height:50px;border-radius:12px;background:#132a18;border:1.5px solid #2a9d6a;display:grid;place-items:center;font-size:26px;flex:0 0 50px}
+.intro-speaker{font-family:'Press Start 2P';font-weight:700;font-size:9px;letter-spacing:.08em;color:#7dd3ff;margin-bottom:4px}
+.intro-line{font-size:12px;line-height:1.6;min-height:42px;white-space:pre-wrap}
+.intro-continue{margin-top:6px;font-size:8px;opacity:.55;letter-spacing:.06em;text-align:right;animation:pulse 1.2s infinite}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+/* How To + Game pages use Oswald */
+#howToScreen,#gameScreen{font-family:'Oswald',sans-serif}
 #howToScreen{background:#f7fcf7;flex-direction:column}
-.howtoHeader{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1.5px solid #d7ecd7;position:sticky;top:0;z-index:2}
-.howtoBody{max-width:1200px;width:100%;margin:0 auto;padding:18px;display:grid;gap:16px;grid-template-columns:1.15fr .85fr}
+.howtoHeader{padding:12px 18px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1.5px solid #d7ecd7;position:sticky;top:0;z-index:2}
+.howtoBody{max-width:1200px;width:100%;margin:0 auto;padding:16px;display:grid;gap:14px;grid-template-columns:1.15fr .85fr}
 @media(max-width:900px){.howtoBody{grid-template-columns:1fr}}
-.howCard{background:#fff;border:1.5px solid #d7ecd7;border-radius:16px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,.04)}
-.howCard h2{font-family:'Space Grotesk';font-size:13px;margin-bottom:6px;display:flex;gap:6px;align-items:center}
-.howCard p{font-size:11.5px;line-height:1.55;opacity:.85}
-.table{width:100%;border-collapse:separate;border-spacing:0 5px;margin-top:6px}
-.table th{font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.5;text-align:left;padding:0 5px}
-.table td{font-size:10.5px;background:#f9fdf8;border:1px solid #e2f0de;padding:6px 5px;vertical-align:top}
-.table tr td:first-child{border-radius:9px 0 0 9px;font-weight:800;width:32px;text-align:center;font-size:14px}
-.table tr td:last-child{border-radius:0 9px 9px 0}
+.howCard{background:#fff;border:1.5px solid #d7ecd7;border-radius:14px;padding:12px;box-shadow:0 6px 20px rgba(0,0,0,.04)}
+.howCard h2{font-family:'Oswald';font-size:15px;margin-bottom:5px;display:flex;gap:6px;align-items:center}
+.howCard p{font-size:12px;line-height:1.55;opacity:.85}
+.table{width:100%;border-collapse:separate;border-spacing:0 4px;margin-top:5px}
+.table th{font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.5;text-align:left;padding:0 4px}
+.table td{font-size:11px;background:#f9fdf8;border:1px solid #e2f0de;padding:5px 4px;vertical-align:top}
+.table tr td:first-child{border-radius:8px 0 0 8px;font-weight:800;width:30px;text-align:center;font-size:14px}
+.table tr td:last-child{border-radius:0 8px 8px 0}
 #worldMapScreen{background:linear-gradient(180deg,#eef7ee 0%,#ddeee0 30%,#e6f0ff 100%);flex-direction:column}
-.worldHeader{height:58px;display:flex;justify-content:space-between;align-items:center;padding:0 18px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:2px solid #d7ecd7;flex-shrink:0}
-.worldHeader .logo{font-family:'Space Grotesk';font-weight:700;display:flex;gap:8px;align-items:center}
-.worldContent{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:14px}
-.worldProgress{max-width:1200px;width:100%;margin:0 auto;background:#fff;border:1.5px solid #d7ecd7;border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;flex-shrink:0;transition:transform .2s}.worldProgress:hover{transform:scale(1.005)}
-.worldZonesWrap{width:100%;overflow-x:auto;overflow-y:hidden;padding-bottom:8px;scroll-behavior:smooth}
-.worldZones{display:flex;flex-direction:row;align-items:stretch;gap:0;width:max-content;min-width:100%;padding:8px 4px 16px}
-.zone{min-width:300px;max-width:440px;border-radius:18px;padding:12px;border:1.5px solid #d7ecd7;box-shadow:0 8px 24px rgba(0,0,0,.04);position:relative;overflow:hidden;flex-shrink:0;display:flex;flex-direction:column;background:#fff;margin-right:12px;transition:transform .2s,box-shadow .2s}.zone:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.1)}
-.zoneHeader{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;margin-bottom:10px;gap:8px}
-.zoneTitle{font-family:'Space Grotesk';font-size:13px;display:flex;gap:6px;align-items:center;line-height:1.2}
-.zoneDesc{font-size:10px;opacity:.65;margin-top:3px;line-height:1.3}
-.zoneLevels{display:flex;flex-direction:row;flex-wrap:nowrap;gap:0;overflow:visible;position:relative;z-index:1;padding:6px 0 6px 2px}
-.levelNode{height:74px;min-width:74px;width:74px;border-radius:13px;border:2px solid #d7ecd7;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-weight:800;position:relative;box-shadow:0 3px 0 #d7ecd7;flex-shrink:0;margin-right:12px}
-.levelNode::after{content:'';position:absolute;right:-12px;top:50%;width:12px;height:3px;background:#c8e6c3;transform:translateY(-50%)}
+#worldParticles{position:absolute;inset:0;z-index:0;pointer-events:none}
+.worldHeader{height:54px;display:flex;justify-content:space-between;align-items:center;padding:0 16px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:2px solid #d7ecd7;flex-shrink:0;position:relative;z-index:1}
+.worldHeader .logo{font-family:'Press Start 2P';font-weight:700;font-size:9px;display:flex;gap:6px;align-items:center}
+.worldContent{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+.worldProgress{max-width:1200px;width:100%;margin:0 auto;background:#fff;border:1.5px solid #d7ecd7;border-radius:12px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;flex-shrink:0;transition:transform .2s}.worldProgress:hover{transform:scale(1.005)}
+.worldZonesWrap{width:100%;overflow-x:auto;overflow-y:hidden;padding-bottom:6px;scroll-behavior:smooth}
+.worldZones{display:flex;flex-direction:row;align-items:stretch;gap:0;width:max-content;min-width:100%;padding:6px 4px 14px}
+.zone{min-width:280px;max-width:400px;border-radius:16px;padding:10px;border:1.5px solid #d7ecd7;box-shadow:0 6px 20px rgba(0,0,0,.04);position:relative;overflow:hidden;flex-shrink:0;display:flex;flex-direction:column;background:#fff;margin-right:10px;transition:transform .2s,box-shadow .2s}.zone:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.zoneHeader{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;margin-bottom:8px;gap:6px}
+.zoneTitle{font-family:'Press Start 2P';font-size:10px;display:flex;gap:5px;align-items:center;line-height:1.2}
+.zoneDesc{font-size:8px;opacity:.65;margin-top:2px;line-height:1.3}
+.zoneLevels{display:flex;flex-direction:row;flex-wrap:nowrap;gap:0;overflow:visible;position:relative;z-index:1;padding:5px 0 5px 2px}
+.levelNode{height:68px;min-width:68px;width:68px;border-radius:12px;border:2px solid #d7ecd7;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-weight:800;position:relative;box-shadow:0 3px 0 #d7ecd7;flex-shrink:0;margin-right:10px}
+.levelNode::after{content:'';position:absolute;right:-10px;top:50%;width:10px;height:3px;background:#c8e6c3;transform:translateY(-50%)}
 .levelNode:last-child::after{display:none}
-.levelNode:hover{transform:translateY(-3px);box-shadow:0 6px 14px rgba(0,0,0,.1),0 3px 0 #d7ecd7}
+.levelNode:hover{transform:translateY(-3px);box-shadow:0 5px 12px rgba(0,0,0,.1),0 3px 0 #d7ecd7}
 .levelNode.locked{opacity:.42;filter:grayscale(.7);cursor:not-allowed;background:#f2f2f2}
 .levelNode.completed{border-color:var(--green);background:#f1fbf1}
 .levelNode.current{box-shadow:0 0 0 3px #c8ecc8,0 3px 0 var(--green);border-color:var(--green)}
-.levelNode .lnum{font-size:15px}.levelNode .lwave{font-size:8px;opacity:.6;margin-top:2px}.levelNode .lstar{font-size:8.5px;margin-top:2px}
-.chapter-divider{min-width:92px;width:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;flex-shrink:0;margin:0 4px}
-.chapter-divider .divider-line{width:3px;height:64px;background:repeating-linear-gradient(180deg,#a8d4a0 0 8px,transparent 8px 14px);border-radius:99px;opacity:.9}
-.chapter-divider .divider-icon{width:46px;height:46px;border-radius:50%;background:#fff;border:2px solid #c8e6c3;display:grid;place-items:center;font-size:22px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.chapter-divider .divider-label{font-family:'Space Grotesk';font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;text-align:center;line-height:1.2;max-width:84px}
+.levelNode .lnum{font-size:13px}.levelNode .lwave{font-size:7px;opacity:.6;margin-top:1px}.levelNode .lstar{font-size:7px;margin-top:1px}
+.chapter-divider{min-width:84px;width:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex-shrink:0;margin:0 3px}
+.chapter-divider .divider-line{width:3px;height:56px;background:repeating-linear-gradient(180deg,#a8d4a0 0 7px,transparent 7px 12px);border-radius:99px;opacity:.9}
+.chapter-divider .divider-icon{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid #c8e6c3;display:grid;place-items:center;font-size:18px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.chapter-divider .divider-label{font-family:'Press Start 2P';font-size:7px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;text-align:center;line-height:1.2;max-width:78px}
 #gameScreen{display:none;flex-direction:column;height:100vh;width:100vw;background:var(--bg)}
-#gameHeader{min-height:62px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:8px 14px;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);border-bottom:2.5px solid #c8e6c3;flex-shrink:0}
-#gameHeader .logo{font-size:12px;white-space:nowrap;display:flex;align-items:center;gap:8px;flex-shrink:0}
-.stats{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:nowrap}
-.stat{height:42px;min-width:88px;display:flex;align-items:center;gap:7px;padding:4px 10px;background:#fff;border:1.5px solid #dbead9;border-radius:11px;box-shadow:0 2px 0 #dbead9;font-weight:800;transition:transform .15s}.stat:hover{transform:scale(1.05)}
-#startWaveBtn{height:42px;min-width:128px;justify-content:center;white-space:nowrap;flex-shrink:0}
+#gameHeader{min-height:56px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:6px 12px;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);border-bottom:2.5px solid #c8e6c3;flex-shrink:0;font-family:'Oswald',sans-serif}
+#gameHeader .logo{font-size:11px;white-space:nowrap;display:flex;align-items:center;gap:6px;flex-shrink:0;font-family:'Oswald',sans-serif}
+.stats{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:nowrap}
+.stat{height:38px;min-width:80px;display:flex;align-items:center;gap:6px;padding:3px 8px;background:#fff;border:1.5px solid #dbead9;border-radius:10px;box-shadow:0 2px 0 #dbead9;font-weight:800;transition:transform .15s;font-family:'Oswald',sans-serif;font-size:11px}.stat:hover{transform:scale(1.05)}
+#startWaveBtn{height:38px;min-width:110px;justify-content:center;white-space:nowrap;flex-shrink:0}
 #gameMain{flex:1;display:flex;overflow:hidden;min-height:0}
-#mapArea{flex:1.7;display:flex;flex-direction:column;padding:10px;gap:8px;min-width:0;overflow:hidden}
-#canvasContainer{flex:1;position:relative;background:#e9f5e3;border-radius:16px;border:2.5px solid #c8e6c3;overflow:hidden;box-shadow:0 12px 32px rgba(30,80,30,.12),inset 0 0 0 5px rgba(255,255,255,.7);display:flex;min-height:0}
+#mapArea{flex:1.7;display:flex;flex-direction:column;padding:8px;gap:6px;min-width:0;overflow:hidden}
+#canvasContainer{flex:1;position:relative;background:#e9f5e3;border-radius:14px;border:2.5px solid #c8e6c3;overflow:hidden;box-shadow:0 10px 28px rgba(30,80,30,.12),inset 0 0 0 4px rgba(255,255,255,.7);display:flex;min-height:0}
 canvas{display:block;width:100%;height:100%;object-fit:contain;cursor:crosshair}
-#waveDossier{background:#fff;border:1.5px solid #d7ecd7;border-radius:12px;padding:8px 10px;display:flex;gap:10px;align-items:flex-start;flex-shrink:0}
-#waveDossier .icon{width:36px;height:36px;border-radius:10px;background:var(--lime);display:grid;place-items:center;font-size:18px;flex:0 0 36px}
-#waveDossier h4{font-family:'Space Grotesk';font-size:11.5px}
-#waveDossier p{font-size:10.5px;line-height:1.35;opacity:.8;margin-top:2px}
-.waveMeta{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
-#sidePanel{width:320px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;padding:10px;overflow:auto}
-.panel{background:#fff;border:1.5px solid #d7ecd7;border-radius:14px;padding:10px;box-shadow:0 6px 20px rgba(0,0,0,.04);flex-shrink:0;transition:transform .2s}.panel:hover{transform:translateY(-1px)}
-.panel h3{font-family:'Space Grotesk';font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
-.towerShop{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.towerCard{border:1.5px solid #dbe9d6;border-radius:11px;padding:7px;cursor:pointer;transition:all .2s;background:#fff;position:relative;overflow:hidden}
-.towerCard:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,0,0,.08);border-color:var(--green)}
+#waveDossier{background:#fff;border:1.5px solid #d7ecd7;border-radius:10px;padding:6px 8px;display:flex;gap:8px;align-items:flex-start;flex-shrink:0;font-family:'Oswald',sans-serif}
+#waveDossier .icon{width:32px;height:32px;border-radius:8px;background:var(--lime);display:grid;place-items:center;font-size:16px;flex:0 0 32px}
+#waveDossier h4{font-family:'Oswald';font-size:13px}
+#waveDossier p{font-size:11px;line-height:1.35;opacity:.8;margin-top:2px}
+.waveMeta{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+#sidePanel{width:300px;flex-shrink:0;display:flex;flex-direction:column;gap:6px;padding:8px;overflow:auto;font-family:'Oswald',sans-serif}
+.panel{background:#fff;border:1.5px solid #d7ecd7;border-radius:12px;padding:8px;box-shadow:0 5px 16px rgba(0,0,0,.04);flex-shrink:0;transition:transform .2s}.panel:hover{transform:translateY(-1px)}
+.panel h3{font-family:'Oswald';font-size:13px;letter-spacing:.06em;text-transform:uppercase;opacity:.65;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+.towerShop{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.towerCard{border:1.5px solid #dbe9d6;border-radius:10px;padding:6px;cursor:pointer;transition:all .2s;background:#fff;position:relative;overflow:hidden}
+.towerCard:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.08);border-color:var(--green)}
 .towerCard.selected{border-color:var(--green);background:#f1fbf1;box-shadow:0 0 0 2px #c8ecc8}
 .towerCard.locked{opacity:.45;filter:grayscale(.6);cursor:not-allowed;background:#f5f5f5}
-.towerCard .emoji{font-size:18px}.towerCard .name{font-weight:800;font-size:10px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.towerCard .cost{font-weight:800;color:var(--green-dark);font-size:9px}.towerCard .meta{font-size:8.5px;opacity:.6;line-height:1.2;height:18px;overflow:hidden}
-.enemyList{display:flex;flex-direction:column;gap:5px;max-height:190px;overflow:auto}
-.enemyRow{display:flex;gap:7px;align-items:center;background:#f9fdf8;border:1px solid #e2f0de;border-radius:9px;padding:5px 7px}
-.enemyRow .em{font-size:14px;width:24px;height:24px;display:grid;place-items:center;background:#fff;border-radius:6px;border:1px solid #e6f0e3;flex-shrink:0}
-.enemyRow .info{flex:1;min-width:0}.enemyRow .info b{font-size:10px}.enemyRow .info span{font-size:8.5px;opacity:.7;display:block;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.detailBox{font-size:10.5px;line-height:1.4}.detailBox .big{font-size:22px}
-#overlay{position:absolute;inset:0;background:rgba(238,247,238,.92);backdrop-filter:blur(6px);display:none;place-items:center;z-index:5;text-align:center;padding:16px}
+.towerCard .emoji{font-size:16px}.towerCard .name{font-weight:800;font-size:9px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.towerCard .cost{font-weight:800;color:var(--green-dark);font-size:8px}.towerCard .meta{font-size:7.5px;opacity:.6;line-height:1.2;height:16px;overflow:hidden}
+.enemyList{display:flex;flex-direction:column;gap:4px;max-height:170px;overflow:auto}
+.enemyRow{display:flex;gap:6px;align-items:center;background:#f9fdf8;border:1px solid #e2f0de;border-radius:8px;padding:4px 6px}
+.enemyRow .em{font-size:13px;width:22px;height:22px;display:grid;place-items:center;background:#fff;border-radius:5px;border:1px solid #e6f0e3;flex-shrink:0}
+.enemyRow .info{flex:1;min-width:0}.enemyRow .info b{font-size:9px}.enemyRow .info span{font-size:7.5px;opacity:.7;display:block;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.detailBox{font-size:10px;line-height:1.4}.detailBox .big{font-size:20px}
+#overlay{position:absolute;inset:0;background:rgba(238,247,238,.92);backdrop-filter:blur(6px);display:none;place-items:center;z-index:5;text-align:center;padding:14px}
 #overlay.show{display:grid}
-/* Eco Tip Popup */
-#ecoTipPopup{position:fixed;top:0;right:0;bottom:0;width:340px;z-index:60;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);border-left:2px solid #c8e6c3;box-shadow:-8px 0 30px rgba(0,0,0,.1);padding:18px;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
+#ecoTipPopup{position:fixed;top:0;right:0;bottom:0;width:320px;z-index:60;background:rgba(255,255,255,.98);backdrop-filter:blur(12px);border-left:2px solid #c8e6c3;box-shadow:-8px 0 30px rgba(0,0,0,.1);padding:16px;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
 #ecoTipPopup.show{transform:translateX(0)}
-#ecoTipPopup h3{font-family:'Space Grotesk';font-size:13px;display:flex;gap:8px;align-items:center;margin-bottom:10px}
-#ecoTipClose{position:absolute;top:10px;right:10px;background:none;border:0;font-size:18px;cursor:pointer;opacity:.5}
+#ecoTipPopup h3{font-family:'Press Start 2P';font-size:11px;display:flex;gap:6px;align-items:center;margin-bottom:8px}
+#ecoTipClose{position:absolute;top:8px;right:8px;background:none;border:0;font-size:16px;cursor:pointer;opacity:.5}
 #ecoTipClose:hover{opacity:1}
-@media(max-width:1100px){#gameMain{flex-direction:column;align-items:center}#sidePanel{width:100%;flex-direction:row;padding:0 10px 10px}#sidePanel .panel{flex:1;min-width:260px}}
-@media(max-width:640px){#gameHeader{grid-template-columns:1fr;gap:8px;padding:8px}#gameHeader .logo{justify-content:center}.stats{justify-content:center;flex-wrap:wrap}#startWaveBtn{width:100%;justify-content:center}}
+@media(max-width:1100px){#gameMain{flex-direction:column;align-items:center}#sidePanel{width:100%;flex-direction:row;padding:0 8px 8px}#sidePanel .panel{flex:1;min-width:240px}}
+@media(max-width:640px){#gameHeader{grid-template-columns:1fr;gap:6px;padding:6px}#gameHeader .logo{justify-content:center}.stats{justify-content:center;flex-wrap:wrap}#startWaveBtn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
 <div id="homeScreen" class="screen active">
   <canvas id="homeParticles"></canvas>
+  <div class="hero-badge">🌍 20 LEVELS</div>
   <h1 class="hero-title">CLIMATE<br><span>GUARDIANS</span></h1>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin:6px 0 14px;position:relative;z-index:1">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px 0 12px;position:relative;z-index:1">
     <input id="playerNameInput" type="text" placeholder="Enter Guardian name..." maxlength="16" autocomplete="off">
-    <div style="font-size:10px;opacity:.55">Saved to browser</div>
+    <div style="font-size:8px;opacity:.55">Saved to browser</div>
   </div>
 
-  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px;position:relative;z-index:1">
-    <button class="btn btn-primary" id="homePlayBtn">▶ START PROLOGUE</button>
-    <button class="btn btn-ghost" id="homeHowToBtn">📖 HOW TO PLAY</button>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:4px;position:relative;z-index:1">
+    <button class="btn btn-primary" id="homePlayBtn">▶ START</button>
+    <button class="btn btn-ghost" id="homeHowToBtn">📖 HOW TO</button>
   </div>
 </div>
 <div id="introScreen" class="screen"><canvas id="introParticles"></canvas><div class="intro-box"><div class="intro-header"><span id="introChapter">PROLOGUE</span><span id="introPlayerTag">Guardian: Akira</span></div><div class="intro-history" id="introHistory"></div><div class="intro-current"><div class="intro-portrait" id="introPortrait">🌍</div><div class="intro-text"><div class="intro-speaker" id="introSpeaker">PLANET</div><div class="intro-line" id="introLine"></div><div class="intro-continue" id="introCont">▶ Tap / Space</div></div></div></div></div>
 <div id="zonePrologueScreen" class="screen"><canvas id="zoneParticles"></canvas><div class="intro-box"><div class="intro-header"><span id="zoneChapter">ZONE PROLOGUE</span><span id="zonePlayerTag">Guardian</span></div><div class="intro-history" id="zoneHistory"></div><div class="intro-current"><div class="intro-portrait" id="zonePortrait">🌊</div><div class="intro-text"><div class="intro-speaker" id="zoneSpeaker">ZONE</div><div class="intro-line" id="zoneLine"></div><div class="intro-continue" id="zoneCont">▶ Continue</div></div></div></div></div>
-<div id="howToScreen" class="screen"><div class="howtoHeader"><div class="logo"><div style="width:28px;height:28px;border-radius:7px;background:conic-gradient(from 0deg,var(--green),#a8e6a3,var(--green));display:grid;place-items:center;color:#fff">🌍</div> HOW TO PLAY</div><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" id="howtoBackBtn">← Home</button><button class="btn btn-primary btn-sm" id="howtoPlayBtn">▶ Map</button></div></div><div class="howtoBody"><div style="display:flex;flex-direction:column;gap:14px"><div class="howCard"><h2>🎯 How It Works</h2><p>• <b>Color-based path:</b> Enemies follow the brown path. Towers can't go on the path color.<br>• <b>Not tiled, not grid:</b> Free placement anywhere off the path color.<br>• <b>Build anytime:</b> You can place towers even during waves!<br>• <b>Click towers on map:</b> Click a placed tower to see stats, sell, or upgrade.<br>• <b>Health loss different:</b> Micro 1, CO₂ 1, Wildfire 2, Dozer 3, Methane 4, Heat Dome 5.<br>• <b>20 maps:</b> Unique winding paths. Background changes every 10 levels.<br>• <b>Eco tips:</b> When you place a tower, you learn a real-world action to help Earth!<br>• <b>Prologues:</b> Story conversations before each zone, personalised with your name.</p></div><div class="howCard"><h2>🛡️ Towers</h2><table class="table" id="howToTowerTable"></table></div></div><div style="display:flex;flex-direction:column;gap:14px"><div class="howCard"><h2>☠️ Enemies — HP Loss</h2><table class="table" id="howToEnemyTable"></table></div><div class="howCard" style="background:linear-gradient(180deg,#fff,#f1fbf1)"><h2>🗺️ Zones</h2><div id="howToWavesPreview" style="margin-top:6px;display:flex;flex-direction:column;gap:5px;max-height:380px;overflow:auto"></div></div></div></div></div>
-<div id="worldMapScreen" class="screen"><div class="worldHeader"><div class="logo"><div style="width:28px;height:28px;border-radius:7px;background:conic-gradient(from 0deg,var(--green),#a8e6a3,var(--green));display:grid;place-items:center;color:#fff">🌍</div> <span id="worldMapTitle">MAP</span> <span id="worldPlayerName" style="font-size:10px;background:#d6f5d6;padding:3px 8px;border-radius:99px;margin-left:8px">Guardian</span> <span id="worldProgressText" style="font-size:10px;background:#e0f2ff;padding:3px 8px;border-radius:99px;margin-left:4px">0/20</span></div><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" id="worldHomeBtn">⌂ Home</button><button class="btn btn-ghost btn-sm" id="worldHowToBtn">📖 Help</button></div></div><div class="worldContent"><div class="worldProgress"><div><b id="worldStats">Map</b><br><small style="font-size:10px;opacity:.6">20 levels, 8 zones, color-based path, build anytime.</small></div><div style="display:flex;gap:6px;align-items:center"><div style="font-size:10px">Unlocked: <b id="worldUnlockCount">1/10</b></div><button class="btn btn-primary btn-sm" id="worldContinueBtn">▶ Continue</button></div></div><div class="worldZonesWrap"><div class="worldZones" id="worldZones"></div></div></div></div>
+<div id="howToScreen" class="screen"><div class="howtoHeader"><div class="logo"><div style="width:26px;height:26px;border-radius:6px;background:conic-gradient(from 0deg,var(--green),#a8e6a3,var(--green));display:grid;place-items:center;color:#fff">🌍</div> HOW TO PLAY</div><div style="display:flex;gap:5px"><button class="btn btn-ghost btn-sm" id="howtoBackBtn">← Home</button><button class="btn btn-primary btn-sm" id="howtoPlayBtn">▶ Map</button></div></div><div class="howtoBody"><div style="display:flex;flex-direction:column;gap:12px"><div class="howCard"><h2>🎯 How It Works</h2><p>• <b>Color-based path:</b> Enemies follow the brown path. Towers can't go on the path color.<br>• <b>Not tiled, not grid:</b> Free placement anywhere off the path color.<br>• <b>Build anytime:</b> You can place towers even during waves!<br>• <b>Click towers on map:</b> Click a placed tower to see stats, sell, or upgrade.<br>• <b>Health loss different:</b> Micro 1, CO₂ 1, Wildfire 2, Dozer 3, Methane 4, Heat Dome 5.<br>• <b>Waves per level = zone number:</b> Zone 1 has 1 wave, Zone 8 has 8 waves.<br>• <b>Eco tips:</b> When you place a tower, you learn a real-world action to help Earth!<br>• <b>Prologues:</b> Story conversations before each zone, personalised with your name.</p></div><div class="howCard"><h2>🛡️ Towers</h2><table class="table" id="howToTowerTable"></table></div></div><div style="display:flex;flex-direction:column;gap:12px"><div class="howCard"><h2>☠️ Enemies — HP Loss</h2><table class="table" id="howToEnemyTable"></table></div><div class="howCard" style="background:linear-gradient(180deg,#fff,#f1fbf1)"><h2>🗺️ Zones</h2><div id="howToWavesPreview" style="margin-top:5px;display:flex;flex-direction:column;gap:4px;max-height:360px;overflow:auto"></div></div></div></div></div>
+<div id="worldMapScreen" class="screen">
+  <canvas id="worldParticles"></canvas>
+  <div class="worldHeader"><div class="logo"><div style="width:26px;height:26px;border-radius:6px;background:conic-gradient(from 0deg,var(--green),#a8e6a3,var(--green));display:grid;place-items:center;color:#fff">🌍</div> <span id="worldMapTitle">MAP</span> <span id="worldPlayerName" style="font-size:8px;background:#d6f5d6;padding:2px 7px;border-radius:99px;margin-left:6px">Guardian</span> <span id="worldProgressText" style="font-size:8px;background:#e0f2ff;padding:2px 7px;border-radius:99px;margin-left:3px">0/20</span></div><div style="display:flex;gap:5px"><button class="btn btn-ghost btn-sm" id="worldHomeBtn">⌂ Home</button><button class="btn btn-ghost btn-sm" id="worldHowToBtn">📖 Help</button></div></div><div class="worldContent"><div class="worldProgress"><div><b id="worldStats">Map</b><br><small style="font-size:8px;opacity:.6">20 levels, 8 zones, color-based path, build anytime.</small></div><div style="display:flex;gap:5px;align-items:center"><div style="font-size:8px">Unlocked: <b id="worldUnlockCount">1/10</b></div><button class="btn btn-primary btn-sm" id="worldContinueBtn">▶ Continue</button></div></div><div class="worldZonesWrap"><div class="worldZones" id="worldZones"></div></div></div></div>
 <div id="gameScreen" style="display:none">
   <header id="gameHeader">
-    <div class="logo" style="font-size:12px"><div style="width:28px;height:28px;border-radius:7px;background:conic-gradient(from 0deg,var(--green),#a8e6a3,var(--green));display:grid;place-items:center;color:#fff">🌍</div> <span id="gameLevelName">Level 1</span> <span id="gamePlayerTag" style="font-size:9px;background:#d6f5d6;padding:2px 6px;border-radius:99px;margin-left:6px">Akira</span> <button class="btn btn-ghost btn-sm" id="headerMapBtn" style="margin-left:6px">🗺️ Map</button></div>
+    <div class="logo" style="font-size:11px"><div style="width:26px;height:26px;border-radius:6px;background:conic-gradient(from 0deg,var(--green),#a8e6a3,var(--green));display:grid;place-items:center;color:#fff">🌍</div> <span id="gameLevelName">Level 1</span> <span id="gamePlayerTag" style="font-size:8px;background:#d6f5d6;padding:2px 5px;border-radius:99px;margin-left:5px">Akira</span> <button class="btn btn-ghost btn-sm" id="headerMapBtn" style="margin-left:5px">🗺️ Map</button></div>
     <div class="stats">
       <div class="stat"><span>💚</span><div><small>HP</small><b id="lives">22</b></div></div>
-      <div class="stat"><span>🪙</span><div><small>COINS</small><b id="money">240</b></div></div>
-      <div class="stat"><span>🌊</span><div><small>WAVE</small><b id="wave">1 / 1</b></div></div>
+      <div class="stat"><span>🪙</span><div><small>COINS</small><b id="money">175</b></div></div>
+      <div class="stat"><span>🌊</span><div><small>WAVE</small><b id="wave">0 / 1</b></div></div>
       <div class="stat"><span>🔓</span><div><small>TECH</small><b id="unlockCount">2/10</b></div></div>
       <div class="stat" style="background:#f1fbf1;border-color:#b9dfb1"><span>🌱</span><div><small>PLEDGES</small><b id="ecoPledgeCount">0</b></div></div>
     </div>
-    <button class="btn btn-primary" id="startWaveBtn">▶ START WAVE</button>
+    <button class="btn btn-primary" id="startWaveBtn">▶ WAVE</button>
   </header>
-  <div id="gameMain"><div id="mapArea"><div id="canvasContainer"><canvas id="game" width="1280" height="720"></canvas><div id="overlay"><div id="overlayCard" style="background:#fff;border:2px solid #c9e9c2;border-radius:18px;padding:18px;max-width:480px;box-shadow:0 20px 50px rgba(0,0,0,.12)"></div></div></div><div id="waveDossier"><div class="icon" id="dossierIcon">🏗️</div><div style="flex:1;min-width:0"><h4 id="dossierTitle">Build Phase</h4><p id="dossierText">Build towers anytime — even during waves!</p><div class="waveMeta" id="dossierMeta"><span class="tag tag-success">BUILD</span></div></div></div></div><div id="sidePanel"><div class="panel"><h3>Shop <span id="shopPhase" class="tag tag-success">BUILD</span></h3><div class="towerShop" id="shop"></div><div style="font-size:9px;opacity:.55;margin-top:5px">Build anytime! Click towers on map to sell/upgrade. Can't place on path color.</div></div><div class="panel"><h3>Dossier <span id="waveTag" class="tag tag-success">Build</span></h3><div id="selectedInfo" class="detailBox" style="min-height:78px"></div><div style="margin-top:8px"><h3 style="margin-bottom:5px">Incoming</h3><div id="enemyPreview" class="enemyList"></div></div></div><div class="panel" style="background:linear-gradient(180deg,#fff,#f4fbf0)"><h3>🌡️ Briefing</h3><div id="briefingContent" style="font-size:10px;line-height:1.4"><div style="background:#f0f7ec;border-radius:8px;padding:6px 8px;margin-bottom:5px"><strong style="font-size:9px">HP LOSS DIFF:</strong><br><span id="leakImpact">Micro 1, Heat Dome 5</span></div><div style="background:#e8f5e9;border-radius:8px;padding:6px 8px;margin-bottom:5px"><strong style="font-size:9px">🌱 YOUR ECO PLEDGES:</strong><br><span id="ecoCO2Saved">0</span> lbs CO₂/yr pledged</div><div id="randomFact" style="font-size:10px;opacity:.75">Path color = brown. Can't place there.</div></div></div></div></div>
+  <div id="gameMain"><div id="mapArea"><div id="canvasContainer"><canvas id="game" width="1280" height="720"></canvas><div id="overlay"><div id="overlayCard" style="background:#fff;border:2px solid #c9e9c2;border-radius:16px;padding:16px;max-width:460px;box-shadow:0 18px 44px rgba(0,0,0,.12)"></div></div></div><div id="waveDossier"><div class="icon" id="dossierIcon">🏗️</div><div style="flex:1;min-width:0"><h4 id="dossierTitle">Build Phase</h4><p id="dossierText">Build towers anytime — even during waves!</p><div class="waveMeta" id="dossierMeta"><span class="tag tag-success">BUILD</span></div></div></div></div><div id="sidePanel"><div class="panel"><h3>Shop <span id="shopPhase" class="tag tag-success">BUILD</span></h3><div class="towerShop" id="shop"></div><div style="font-size:8px;opacity:.55;margin-top:4px">Build anytime! Click towers on map to sell/upgrade.</div></div><div class="panel"><h3>Dossier <span id="waveTag" class="tag tag-success">Build</span></h3><div id="selectedInfo" class="detailBox" style="min-height:68px"></div><div style="margin-top:6px"><h3 style="margin-bottom:4px">Incoming</h3><div id="enemyPreview" class="enemyList"></div></div></div><div class="panel" style="background:linear-gradient(180deg,#fff,#f4fbf0)"><h3>🌡️ Briefing</h3><div id="briefingContent" style="font-size:10px;line-height:1.4"><div style="background:#f0f7ec;border-radius:7px;padding:5px 7px;margin-bottom:4px"><strong style="font-size:8px">HP LOSS DIFF:</strong><br><span id="leakImpact">Micro 1, Heat Dome 5</span></div><div style="background:#e8f5e9;border-radius:7px;padding:5px 7px;margin-bottom:4px"><strong style="font-size:8px">🌱 YOUR ECO PLEDGES:</strong><br><span id="ecoCO2Saved">0</span> lbs CO₂/yr pledged</div><div id="randomFact" style="font-size:9px;opacity:.75">Path color = brown. Can't place there.</div></div></div></div></div>
 </div>
-<!-- Eco Tip Popup (slides in from right) -->
 <div id="ecoTipPopup">
   <button id="ecoTipClose">✕</button>
   <h3>🌱 Eco Lesson</h3>

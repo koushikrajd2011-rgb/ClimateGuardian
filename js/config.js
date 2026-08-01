@@ -9,13 +9,14 @@ const CONFIG = {
     PATH_COLOR_RGB: [139, 89, 38],
     COLOR_TOLERANCE: 55,
     BACKGROUND_IMG: 'assets/background.png',
-    START_MONEY: 240,
+    START_MONEY: 175,
     START_LIVES: 22,
-    SPAWN_INTERVAL: 0.5,
+    SPAWN_INTERVAL: 0.7,
     PROJECTILE_SPEED: 420,
     TOWER_MIN_DISTANCE: 58,
     TOWER_RADIUS: 36,
     BUILD_PHASE_TIME: 5,
+    SPRITE_OFFSET_X: -6,
 
     TOWERS: {
         solar:    {id:'solar',   name:'Solar Panel',    emoji:'☀️',  cost:70,  dmg:16, range:132, fireRate:0.48, color:'#ffcc33', effect:'none',  slowFactor:0, slowDuration:0, income:0, description:'Clean energy beam', ability:'1.5× vs CO₂/Wildfire', trait:'warn', unlock:1,  fact:'Solar energy could meet global demand 10,000× over.', ecoTip:'Switch to solar — it cuts your home CO₂ by 80%. Start small: try a solar phone charger!', ecoAction:'Switch to solar energy', ecoSavings:800},
@@ -57,28 +58,52 @@ const CONFIG = {
         {id:8, name:"Future City 2050", icon:"🏙️", range:[19,20], color:"#dcd8ff", desc:"Net-zero metropolis", divider:"city", divIcon:"🌉", divLabel:"City Gate"}
     ],
 
-    // 1 WAVE per level, 20 levels total ≈ 30-45 min gameplay
-    // More enemies per wave to compensate for single wave
-    WAVES: [
+    // Wave templates — zone.id = number of waves per level in that zone
+    // Zone 1: 1 wave, Zone 2: 2 waves, ... Zone 8: 8 waves
+    WAVE_TEMPLATES: [
+        // Zone 1 (1 wave per level)
         [{type:'co2',count:14}],
-        [{type:'co2',count:16},{type:'plastic',count:8}],
-        [{type:'plastic',count:12},{type:'oil',count:6}],
-        [{type:'co2',count:18},{type:'smog',count:6}],
-        [{type:'oil',count:10},{type:'smog',count:8}],
-        [{type:'co2',count:20},{type:'smog',count:12},{type:'oil',count:6}],
-        [{type:'oil',count:10},{type:'deadzone',count:8},{type:'bulldozer',count:5}],
-        [{type:'heatdome',count:3},{type:'methane',count:6},{type:'oil',count:6}],
-        [{type:'co2',count:22},{type:'methane',count:10},{type:'oil',count:8}],
-        [{type:'heatdome',count:4},{type:'methane',count:8},{type:'oil',count:10}],
-        [{type:'co2',count:25},{type:'smog',count:16},{type:'oil',count:6}],
-        [{type:'methane',count:12},{type:'oil',count:12},{type:'smog',count:8}],
-        [{type:'smog',count:20},{type:'heatdome',count:4},{type:'oil',count:6}],
-        [{type:'co2',count:28},{type:'methane',count:14},{type:'smog',count:8}],
-        [{type:'oil',count:16},{type:'methane',count:12},{type:'heatdome',count:3}],
+        // Zone 2 (2 waves per level)
+        [{type:'co2',count:12},{type:'plastic',count:6}],
+        [{type:'plastic',count:10},{type:'oil',count:5}],
+        // Zone 3 (3 waves per level)
+        [{type:'co2',count:14},{type:'smog',count:5}],
+        [{type:'oil',count:8},{type:'smog',count:6}],
+        [{type:'co2',count:16},{type:'smog',count:8},{type:'oil',count:4}],
+        // Zone 4 (4 waves per level)
+        [{type:'oil',count:10},{type:'deadzone',count:6}],
+        [{type:'co2',count:18},{type:'smog',count:10}],
+        [{type:'oil',count:8},{type:'deadzone',count:6},{type:'bulldozer',count:4}],
+        [{type:'co2',count:20},{type:'methane',count:5},{type:'oil',count:6}],
+        // Zone 5 (5 waves per level)
+        [{type:'co2',count:20},{type:'smog',count:12}],
+        [{type:'oil',count:10},{type:'deadzone',count:8},{type:'bulldozer',count:4}],
+        [{type:'methane',count:6},{type:'oil',count:8}],
+        [{type:'co2',count:22},{type:'methane',count:8},{type:'oil',count:6}],
+        [{type:'heatdome',count:3},{type:'methane',count:8},{type:'oil',count:8}],
+        // Zone 6 (6 waves per level)
+        [{type:'co2',count:22},{type:'smog',count:14}],
+        [{type:'methane',count:8},{type:'oil',count:10}],
+        [{type:'smog',count:16},{type:'heatdome',count:3}],
+        [{type:'co2',count:24},{type:'methane',count:10}],
+        [{type:'oil',count:12},{type:'methane',count:8},{type:'heatdome',count:2}],
+        [{type:'heatdome',count:4},{type:'methane',count:10},{type:'oil',count:8}],
+        // Zone 7 (7 waves per level)
+        [{type:'co2',count:24},{type:'smog',count:16},{type:'methane',count:6}],
+        [{type:'heatdome',count:4},{type:'methane',count:10},{type:'oil',count:8}],
+        [{type:'co2',count:26},{type:'smog',count:18},{type:'methane',count:8}],
+        [{type:'methane',count:12},{type:'oil',count:10},{type:'heatdome',count:3}],
         [{type:'heatdome',count:5},{type:'methane',count:12},{type:'oil',count:10}],
-        [{type:'co2',count:28},{type:'smog',count:18},{type:'methane',count:10}],
+        [{type:'co2',count:28},{type:'methane',count:14},{type:'oil',count:8}],
+        [{type:'heatdome',count:6},{type:'methane',count:14},{type:'oil',count:12}],
+        // Zone 8 (8 waves per level)
+        [{type:'co2',count:28},{type:'smog',count:18},{type:'methane',count:8}],
+        [{type:'heatdome',count:5},{type:'methane',count:12},{type:'oil',count:10}],
+        [{type:'methane',count:16},{type:'heatdome',count:6},{type:'oil',count:12}],
+        [{type:'co2',count:30},{type:'smog',count:20},{type:'methane',count:10}],
         [{type:'heatdome',count:6},{type:'methane',count:14},{type:'oil',count:12}],
         [{type:'methane',count:18},{type:'heatdome',count:8},{type:'oil',count:14}],
+        [{type:'co2',count:32},{type:'methane',count:16},{type:'heatdome',count:6}],
         [{type:'heatdome',count:10},{type:'methane',count:16},{type:'oil',count:16}]
     ],
 
