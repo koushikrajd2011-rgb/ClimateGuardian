@@ -13,7 +13,7 @@ index.html          ← Main game
 config.js           ← Game data
 maps.js             ← 20 maps
 game.js             ← Game engine
-*.png               ← Your sprites (see below)
+*.png               ← sprites 
 ```
 
 ## How to Play
@@ -22,23 +22,6 @@ game.js             ← Game engine
 - Place towers **anywhere else**, even during waves
 - Click towers to sell/upgrade
 - Waves per level = zone number (Zone 1 = 1 wave, Zone 8 = 8)
-
-## Required PNGs
-
-Put these in the same folder as `index.html`:
-
-```
-enemy_bulldozer.png     enemy_micro.png
-enemy_co2.png           enemy_oil.png
-enemy_coal.png          enemy_plastic.png
-enemy_deadzone.png      enemy_smog.png
-enemy_ewaste.png        enemy_tanker.png
-enemy_heatdome.png      enemy_wildfire.png
-enemy_methane.png
-explosion.png   gameHeart.png   slowring.png
-tech.png        wave.png        triple-t-removebg-preview.png
-background.png
-```
 
 Towers use **emoji** — no tower PNGs needed.
 
